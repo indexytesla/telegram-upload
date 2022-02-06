@@ -134,7 +134,9 @@ class Client(TelegramClient):
 
     def _send_file_message(self, entity, file, thumb, progress):
         if ('-' in entity or '+' in entity) and (entity[1].isdigit() == True):
-            entity = int(entity)
+            entity = await self.get_entity(int(entity))
+        else:
+            entity = await self.get_input_entity(entity)
         message = self.send_file(entity, file, thumb=thumb,
                                  file_size=file.file_size if isinstance(file, File) else None,
                                  caption=file.file_caption, force_document=file.force_file,

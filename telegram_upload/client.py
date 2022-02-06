@@ -148,7 +148,7 @@ class Client(TelegramClient):
     async def _send_media(self, entity, file: File, progress):
          if ('-' in entity or '+' in entity) and (entity[1].isdigit() == True):
             entity = await self.get_entity(int(entity))
-        else:
+         else:
             entity = await self.get_input_entity(entity)
         # entity = await self.get_input_entity(entity)
         supports_streaming = False  # TODO
